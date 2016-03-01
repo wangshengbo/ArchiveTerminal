@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    ActionBar actionBar;
+//    ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        actionBar = getActionBar();
+//        actionBar = getActionBar();
 //        actionBar.setSubtitle();
 //        actionBar.setLogo(R.drawable.logo);
 
