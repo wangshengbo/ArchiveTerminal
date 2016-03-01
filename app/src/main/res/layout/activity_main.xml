@@ -10,9 +10,53 @@
         android:layout_width="match_parent"
         android:background="@color/skyblue">
     </android.support.v7.widget.Toolbar>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:layout_below="@+id/toolbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+        <LinearLayout
+            android:id="@+id/left_container"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <fragment
+                android:id="@+id/left_top_fragment"
+                android:name="com.app.zhihua.archiveterminal.LeftTopFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:layout="@layout/left_top_fragment" />
+            <View
+                android:id="@+id/left_fragment_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="#ff0000"
+                />
+            <fragment
+                android:id="@+id/left_down_fragment"
+                android:name="com.app.zhihua.archiveterminal.LeftDownFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:layout="@layout/left_down_fragment" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/fragment_divider"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="#ff0000"
+            />
+        <FrameLayout
+            android:id="@+id/right_container"
+            android:layout_width="1060dp"
+            android:layout_height="match_parent">
+            <fragment
+                android:id="@+id/right_fragment"
+                android:name="com.app.zhihua.archiveterminal.RightFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/right_fragment" />
+        </FrameLayout>
+    </LinearLayout>
 </RelativeLayout>

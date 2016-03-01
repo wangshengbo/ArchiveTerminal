@@ -1,15 +1,29 @@
 package com.app.zhihua.archiveterminal;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener,View.OnClickListener{
+
+    public View fragmentdivider;
+    public View left_container;
+    public View right_container;
+    public Button btn_leftdown,btn_lefttop;
+    public LinearLayout.LayoutParams lp_left,lp_right;
+    int lastX;
+    int screenWidth;
 
     private Toolbar mToolbar;
 
@@ -17,6 +31,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Display dis=this.getWindowManager().getDefaultDisplay();
+        screenWidth=dis.getWidth();
+
+        btn_leftdown = (Button)findViewById(R.id.button_leftdown);
+        btn_leftdown.setOnClickListener(this);
+        btn_lefttop = (Button)findViewById(R.id.button_lefttop);
+        btn_lefttop.setOnClickListener(this);
+
+        fragmentdivider = (View)findViewById(R.id.fragment_divider);
+        fragmentdivider.setOnTouchListener(this);
+
+        left_container = (View)findViewById(R.id.left_container);
+        right_container = (View)findViewById(R.id.right_container);
+
+        lp_left = (LinearLayout.LayoutParams) left_container.getLayoutParams();
+        lp_right = (LinearLayout.LayoutParams) right_container.getLayoutParams();
 
         configToolbar();
     }
@@ -58,5 +89,46 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    public boolean onTouch(View v, MotionEvent event)
+    {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+                int dx=(int)event.getRawX()-lastX;
+                int newWidth_left = left_container.getWidth() + dx;
+                int newWidth_right = screenWidth - newWidth_left - fragmentdivider.getWidth();
+                lp_left.width = newWidth_left;
+                lp_right.width = newWidth_right;
+                left_container.setLayoutParams(lp_left);
+                right_container.setLayoutParams(lp_right);
+                lastX = (int)event.getRawX();
+                break;
+            case MotionEvent.ACTION_DOWN:
+                lastX = (int)event.getRawX();
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button_lefttop:
+                RightJieguoFragment rightJieguoFragment = new RightJieguoFragment();
+                FragmentManager fragmentManager_t = getFragmentManager();
+                FragmentTransaction transaction_t = fragmentManager_t.beginTransaction();
+                transaction_t.replace(R.id.right_container, rightJieguoFragment);
+                transaction_t.commit();
+                break;
+            case R.id.button_leftdown:
+                RightTongjiFragment rightTongjiFragment = new RightTongjiFragment();
+                FragmentManager fragmentManager_d = getFragmentManager();
+                FragmentTransaction transaction_d = fragmentManager_d.beginTransaction();
+                transaction_d.replace(R.id.right_container, rightTongjiFragment);
+                transaction_d.commit();
+        }
     }
 }
