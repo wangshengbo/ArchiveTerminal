@@ -25,17 +25,17 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Hello Title");
-
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);    //开启左上角图标
+//        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("  智华计算机终端保密检查系统归档管理终端");
+        getSupportActionBar().setLogo(R.drawable.logo);
         // 设置返回按钮点击事件--销毁当前Activity
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
     }
 
     @Override
@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-
-
         return true;
     }
 }

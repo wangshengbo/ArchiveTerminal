@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_bar_scan"
         android:title="扫描"
-        android:showAsAction="always"
+        android:orderInCategory="80"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/action_bar_derive"
-        android:showAsAction="always"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="90"
         android:title="导出"/>
 </menu>
