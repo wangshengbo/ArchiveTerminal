@@ -2,13 +2,13 @@ package com.app.zhihua.archiveterminal;
 
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
     ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
