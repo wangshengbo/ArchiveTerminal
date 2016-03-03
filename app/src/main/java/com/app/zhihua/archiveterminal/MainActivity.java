@@ -11,19 +11,33 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.app.zhihua.archiveterminal.Adapter.SimpleTreeListViewAdapter;
+import com.app.zhihua.archiveterminal.Bean.FileBean;
 import com.app.zhihua.archiveterminal.Fragment.RightJieguoFragment;
 import com.app.zhihua.archiveterminal.Fragment.RightTongjiFragment;
+import com.app.zhihua.archiveterminal.Utils.Adapter.TreeListviewAdapter;
+import com.app.zhihua.archiveterminal.Utils.Node;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
 
     public View fragmentdivider;
     public View left_container;
     public View right_container;
-//    public Button btn_leftdown,btn_lefttop;    //要修改
+    public ListView resultsList;     //结果汇总目录
+    public ListView statisticList;    //统计分析目录
+
+    private SimpleTreeListViewAdapter<FileBean> mAdapter;
+    private List<FileBean> mDatas;
+
     public LinearLayout.LayoutParams lp_left,lp_right;
     int lastX;
     int screenWidth;
@@ -38,13 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         Display dis=this.getWindowManager().getDefaultDisplay();
         screenWidth=dis.getWidth();
 
-        /*
-        要修改成两个ListView
-         */
-//        btn_leftdown = (Button)findViewById(R.id.button_leftdown);
-//        btn_leftdown.setOnClickListener(this);
-//        btn_lefttop = (Button)findViewById(R.id.button_lefttop);
-//        btn_lefttop.setOnClickListener(this);
+        resultsList = (ListView) findViewById(R.id.list_results);
+        statisticList = (ListView) findViewById(R.id.list_statistic);
 
         fragmentdivider = (View)findViewById(R.id.fragment_divider);
         fragmentdivider.setOnTouchListener(this);
@@ -55,7 +64,60 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         lp_left = (LinearLayout.LayoutParams) left_container.getLayoutParams();
         lp_right = (LinearLayout.LayoutParams) right_container.getLayoutParams();
 
-        configToolbar();
+        configToolbar();   //设置标题栏
+
+        initDatas();   //初始化目录数据
+        try {
+            mAdapter = new SimpleTreeListViewAdapter<FileBean>(resultsList,this,mDatas,1);
+            resultsList.setAdapter(mAdapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        initClickEvent();     //初始化点击事件
+    }
+
+    private void initClickEvent() {
+        mAdapter.setOnTreeNodeClickListener(new TreeListviewAdapter.OnTreeNodeClickListener() {
+            @Override
+            public void onClick(Node node, int position) {
+                if(node.isLeaf()){
+
+                    /********************************
+                     添加点击事件展示报告
+                     */
+                    Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        resultsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                /*****************************
+                 添加长按删除功能
+                 */
+
+
+                return true;
+            }
+        });
+    }
+
+    private void initDatas() {
+        /*
+        获取扫描得到的报告数据
+         */
+
+
+        mDatas = new ArrayList<FileBean>();
+        FileBean bean = new FileBean(1,0,"根目录1");mDatas.add(bean);
+        bean = new FileBean(2,0,"根目录2");mDatas.add(bean);
+        bean = new FileBean(3,0,"根目录3");mDatas.add(bean);
+        bean = new FileBean(4,1,"根目录1-1");mDatas.add(bean);
+        bean = new FileBean(5,1,"根目录1-2");mDatas.add(bean);
+        bean = new FileBean(6,5,"根目录1-2-1");mDatas.add(bean);
+        bean = new FileBean(7,3,"根目录3-1");mDatas.add(bean);
+        bean = new FileBean(8,3,"根目录3-2");mDatas.add(bean);
+
     }
 
     private void configToolbar() {             //设置标题栏
