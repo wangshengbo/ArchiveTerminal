@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     FragmentTransaction transaction_s = fragmentManager_s.beginTransaction();
                     transaction_s.replace(R.id.right_container, statisticShowFragment);
                     transaction_s.commit();
-//                    Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -124,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     FragmentTransaction transaction_r = fragmentManager_r.beginTransaction();
                     transaction_r.replace(R.id.right_container, resultsShowFragment);
                     transaction_r.commit();
-//                    Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -243,15 +241,4 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
         return true;
     }
-
-//    @Override
-//    public void onClick(View v) {                  //要修改为ListView点击事件
-//        switch (v.getId()){
-//            case R.id.button_lefttop:
-//
-//                break;
-//            case R.id.button_leftdown:
-//
-//        }
-//    }
 }
