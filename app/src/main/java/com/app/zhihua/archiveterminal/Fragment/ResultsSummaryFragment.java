@@ -13,7 +13,7 @@ import com.app.zhihua.archiveterminal.R;
 public class ResultsSummaryFragment extends android.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.left_top_fragment,container,false);
+        View view = inflater.inflate(R.layout.results_summary_fragment,container,false);
         return view;
     }
 }

@@ -18,12 +18,12 @@ import android.widget.Toast;
 import com.app.zhihua.archiveterminal.Fragment.RightJieguoFragment;
 import com.app.zhihua.archiveterminal.Fragment.RightTongjiFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener,View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
 
     public View fragmentdivider;
     public View left_container;
     public View right_container;
-    public Button btn_leftdown,btn_lefttop;    //要修改
+//    public Button btn_leftdown,btn_lefttop;    //要修改
     public LinearLayout.LayoutParams lp_left,lp_right;
     int lastX;
     int screenWidth;
@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         /*
         要修改成两个ListView
          */
-        btn_leftdown = (Button)findViewById(R.id.button_leftdown);
-        btn_leftdown.setOnClickListener(this);
-        btn_lefttop = (Button)findViewById(R.id.button_lefttop);
-        btn_lefttop.setOnClickListener(this);
+//        btn_leftdown = (Button)findViewById(R.id.button_leftdown);
+//        btn_leftdown.setOnClickListener(this);
+//        btn_lefttop = (Button)findViewById(R.id.button_lefttop);
+//        btn_lefttop.setOnClickListener(this);
 
         fragmentdivider = (View)findViewById(R.id.fragment_divider);
         fragmentdivider.setOnTouchListener(this);
@@ -127,22 +127,22 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         return true;
     }
 
-    @Override
-    public void onClick(View v) {                  //要修改为ListView点击事件
-        switch (v.getId()){
-            case R.id.button_lefttop:
-                RightJieguoFragment rightJieguoFragment = new RightJieguoFragment();
-                FragmentManager fragmentManager_t = getFragmentManager();
-                FragmentTransaction transaction_t = fragmentManager_t.beginTransaction();
-                transaction_t.replace(R.id.right_container, rightJieguoFragment);
-                transaction_t.commit();
-                break;
-            case R.id.button_leftdown:
-                RightTongjiFragment rightTongjiFragment = new RightTongjiFragment();
-                FragmentManager fragmentManager_d = getFragmentManager();
-                FragmentTransaction transaction_d = fragmentManager_d.beginTransaction();
-                transaction_d.replace(R.id.right_container, rightTongjiFragment);
-                transaction_d.commit();
-        }
-    }
+//    @Override
+//    public void onClick(View v) {                  //要修改为ListView点击事件
+//        switch (v.getId()){
+//            case R.id.button_lefttop:
+//                RightJieguoFragment rightJieguoFragment = new RightJieguoFragment();
+//                FragmentManager fragmentManager_t = getFragmentManager();
+//                FragmentTransaction transaction_t = fragmentManager_t.beginTransaction();
+//                transaction_t.replace(R.id.right_container, rightJieguoFragment);
+//                transaction_t.commit();
+//                break;
+//            case R.id.button_leftdown:
+//                RightTongjiFragment rightTongjiFragment = new RightTongjiFragment();
+//                FragmentManager fragmentManager_d = getFragmentManager();
+//                FragmentTransaction transaction_d = fragmentManager_d.beginTransaction();
+//                transaction_d.replace(R.id.right_container, rightTongjiFragment);
+//                transaction_d.commit();
+//        }
+//    }
 }

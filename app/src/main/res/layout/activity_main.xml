@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:layout="@layout/left_top_fragment" />
+                tools:layout="@layout/results_summary_fragment" />
             <View
                 android:id="@+id/left_fragment_divider"
                 android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:layout="@layout/left_down_fragment" />
+                tools:layout="@layout/statistical_analysis_fragment" />
         </LinearLayout>
 
         <View
@@ -56,7 +56,7 @@
                 android:name="com.app.zhihua.archiveterminal.Fragment.ReportShowFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout="@layout/right_fragment" />
+                tools:layout="@layout/report_show_fragment" />
         </FrameLayout>
     </LinearLayout>
 </RelativeLayout>
