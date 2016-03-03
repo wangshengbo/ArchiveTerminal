@@ -21,7 +21,7 @@ public class ResultsShowFragment extends android.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.right_jieguo_fragment,container,false);
+        View view = inflater.inflate(R.layout.results_show_fragment,container,false);
         textView = (TextView) view.findViewById(R.id.result_show);
         textView.setText(n.getName());
         return view;

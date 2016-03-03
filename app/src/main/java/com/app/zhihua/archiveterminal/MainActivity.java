@@ -68,19 +68,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         configToolbar();   //设置标题栏
 
         initResultsDatas();   //初始化结果汇总目录数据
-//        initStatisticDatas();   //初始化统计分析目录数据
+        initStatisticDatas();   //初始化统计分析目录数据
 
         try {
             resultsAdapter = new SimpleTreeListViewAdapter<FileBean>(resultsList,this, resultsDatas,1);
             resultsList.setAdapter(resultsAdapter);
-            statisticAdapter = new SimpleTreeListViewAdapter<FileBean>(resultsList,this, statisticDatas,1);
+            statisticAdapter = new SimpleTreeListViewAdapter<FileBean>(statisticList,this, statisticDatas,1);
             statisticList.setAdapter(statisticAdapter);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         initResultsClickEvent();     //初始化结果汇总点击事件
-//        initStatisticClickEvent();     //初始化统计分析点击事件
+        initStatisticClickEvent();     //初始化统计分析点击事件
     }
 
     private void initStatisticClickEvent() {                                //初始化统计分析点击事件
@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     /********************************
                      添加点击事件展示报告
                      */
-                    StatisticShowFragment statisticShowFragment = new StatisticShowFragment();
-                    FragmentManager fragmentManager_d = getFragmentManager();
-                    FragmentTransaction transaction_d = fragmentManager_d.beginTransaction();
-                    transaction_d.replace(R.id.right_container, statisticShowFragment);
-                    transaction_d.commit();
+                    StatisticShowFragment statisticShowFragment = new StatisticShowFragment(node);
+                    FragmentManager fragmentManager_s = getFragmentManager();
+                    FragmentTransaction transaction_s = fragmentManager_s.beginTransaction();
+                    transaction_s.replace(R.id.right_container, statisticShowFragment);
+                    transaction_s.commit();
 //                    Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_SHORT).show();
                 }
             }
@@ -150,15 +150,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         statisticDatas.add(bean);
         bean = new FileBean(3,0,"根目录3");
         statisticDatas.add(bean);
-        bean = new FileBean(4,1,"根目录1-1");
-        statisticDatas.add(bean);
-        bean = new FileBean(5,1,"根目录1-2");
-        statisticDatas.add(bean);
-        bean = new FileBean(6,3,"根目录3-1");
-        statisticDatas.add(bean);
-        bean = new FileBean(7,3,"根目录3-2");
-        statisticDatas.add(bean);
-
     }
 
     private void initResultsDatas() {
