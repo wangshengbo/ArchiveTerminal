@@ -21,7 +21,7 @@
             android:orientation="vertical">
             <fragment
                 android:id="@+id/left_top_fragment"
-                android:name="com.app.zhihua.archiveterminal.LeftTopFragment"
+                android:name="com.app.zhihua.archiveterminal.Fragment.ResultsSummaryFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -34,7 +34,7 @@
                 />
             <fragment
                 android:id="@+id/left_down_fragment"
-                android:name="com.app.zhihua.archiveterminal.LeftDownFragment"
+                android:name="com.app.zhihua.archiveterminal.Fragment.StatisticalAnalysisFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,7 +53,7 @@
             android:layout_height="match_parent">
             <fragment
                 android:id="@+id/right_fragment"
-                android:name="com.app.zhihua.archiveterminal.RightFragment"
+                android:name="com.app.zhihua.archiveterminal.Fragment.ReportShowFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:layout="@layout/right_fragment" />

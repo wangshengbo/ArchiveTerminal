@@ -15,12 +15,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.app.zhihua.archiveterminal.Fragment.RightJieguoFragment;
+import com.app.zhihua.archiveterminal.Fragment.RightTongjiFragment;
+
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener,View.OnClickListener{
 
     public View fragmentdivider;
     public View left_container;
     public View right_container;
-    public Button btn_leftdown,btn_lefttop;
+    public Button btn_leftdown,btn_lefttop;    //要修改
     public LinearLayout.LayoutParams lp_left,lp_right;
     int lastX;
     int screenWidth;
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         Display dis=this.getWindowManager().getDefaultDisplay();
         screenWidth=dis.getWidth();
 
+        /*
+        要修改成两个ListView
+         */
         btn_leftdown = (Button)findViewById(R.id.button_leftdown);
         btn_leftdown.setOnClickListener(this);
         btn_lefttop = (Button)findViewById(R.id.button_lefttop);
@@ -52,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         configToolbar();
     }
 
-    private void configToolbar() {
+    private void configToolbar() {             //设置标题栏
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(mToolbar);
@@ -80,9 +86,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_bar_scan:
+                /*
+                要修改成跳转到扫描功能
+                 */
                 Toast.makeText(MainActivity.this, "push scan", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_bar_derive:
+                /*
+                要修改成跳转到导出功能
+                 */
                 Toast.makeText(MainActivity.this, "push derive", Toast.LENGTH_SHORT).show();
                 break;
             default:
@@ -91,17 +103,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         return true;
     }
 
-    public boolean onTouch(View v, MotionEvent event)
+    public boolean onTouch(View v, MotionEvent event)     //实现分割线拖动功能
     {
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
                 int dx=(int)event.getRawX()-lastX;
                 int newWidth_left = left_container.getWidth() + dx;
                 int newWidth_right = screenWidth - newWidth_left - fragmentdivider.getWidth();
-                lp_left.width = newWidth_left;
-                lp_right.width = newWidth_right;
-                left_container.setLayoutParams(lp_left);
-                right_container.setLayoutParams(lp_right);
+                if(newWidth_left>=200 && newWidth_right>=200){           //滑动阈值
+                    lp_left.width = newWidth_left;
+                    lp_right.width = newWidth_right;
+                    left_container.setLayoutParams(lp_left);
+                    right_container.setLayoutParams(lp_right);
+                }
                 lastX = (int)event.getRawX();
                 break;
             case MotionEvent.ACTION_DOWN:
@@ -114,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) {                  //要修改为ListView点击事件
         switch (v.getId()){
             case R.id.button_lefttop:
                 RightJieguoFragment rightJieguoFragment = new RightJieguoFragment();
