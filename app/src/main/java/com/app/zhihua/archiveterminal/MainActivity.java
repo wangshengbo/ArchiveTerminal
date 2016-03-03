@@ -12,15 +12,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.app.zhihua.archiveterminal.Adapter.SimpleTreeListViewAdapter;
 import com.app.zhihua.archiveterminal.Bean.FileBean;
-import com.app.zhihua.archiveterminal.Fragment.RightJieguoFragment;
-import com.app.zhihua.archiveterminal.Fragment.RightTongjiFragment;
+import com.app.zhihua.archiveterminal.Fragment.ResultsShowFragment;
+import com.app.zhihua.archiveterminal.Fragment.StatisticShowFragment;
 import com.app.zhihua.archiveterminal.Utils.Adapter.TreeListviewAdapter;
 import com.app.zhihua.archiveterminal.Utils.Node;
 
@@ -35,8 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public ListView resultsList;     //结果汇总目录
     public ListView statisticList;    //统计分析目录
 
-    private SimpleTreeListViewAdapter<FileBean> mAdapter;
-    private List<FileBean> mDatas;
+    private SimpleTreeListViewAdapter<FileBean> resultsAdapter;
+    private SimpleTreeListViewAdapter<FileBean> statisticAdapter;
+    private List<FileBean> resultsDatas;
+    private List<FileBean> statisticDatas;
 
     public LinearLayout.LayoutParams lp_left,lp_right;
     int lastX;
@@ -66,26 +67,36 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         configToolbar();   //设置标题栏
 
-        initDatas();   //初始化目录数据
+        initResultsDatas();   //初始化结果汇总目录数据
+//        initStatisticDatas();   //初始化统计分析目录数据
+
         try {
-            mAdapter = new SimpleTreeListViewAdapter<FileBean>(resultsList,this,mDatas,1);
-            resultsList.setAdapter(mAdapter);
+            resultsAdapter = new SimpleTreeListViewAdapter<FileBean>(resultsList,this, resultsDatas,1);
+            resultsList.setAdapter(resultsAdapter);
+            statisticAdapter = new SimpleTreeListViewAdapter<FileBean>(resultsList,this, statisticDatas,1);
+            statisticList.setAdapter(statisticAdapter);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        initClickEvent();     //初始化点击事件
+        initResultsClickEvent();     //初始化结果汇总点击事件
+//        initStatisticClickEvent();     //初始化统计分析点击事件
     }
 
-    private void initClickEvent() {
-        mAdapter.setOnTreeNodeClickListener(new TreeListviewAdapter.OnTreeNodeClickListener() {
+    private void initStatisticClickEvent() {                                //初始化统计分析点击事件
+        statisticAdapter.setOnTreeNodeClickListener(new TreeListviewAdapter.OnTreeNodeClickListener() {
             @Override
             public void onClick(Node node, int position) {
-                if(node.isLeaf()){
-
+                if (node.isLeaf()) {
                     /********************************
                      添加点击事件展示报告
                      */
-                    Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_SHORT).show();
+                    StatisticShowFragment statisticShowFragment = new StatisticShowFragment();
+                    FragmentManager fragmentManager_d = getFragmentManager();
+                    FragmentTransaction transaction_d = fragmentManager_d.beginTransaction();
+                    transaction_d.replace(R.id.right_container, statisticShowFragment);
+                    transaction_d.commit();
+//                    Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,29 +106,82 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 /*****************************
                  添加长按删除功能
                  */
-
-
                 return true;
             }
         });
     }
 
-    private void initDatas() {
+    private void initResultsClickEvent() {                      //初始化结果汇总点击事件
+        resultsAdapter.setOnTreeNodeClickListener(new TreeListviewAdapter.OnTreeNodeClickListener() {
+            @Override
+            public void onClick(Node node, int position) {
+                if (node.isLeaf()) {
+                    /********************************
+                     添加点击事件展示报告
+                     */
+                    ResultsShowFragment resultsShowFragment = new ResultsShowFragment(node);
+                    FragmentManager fragmentManager_r = getFragmentManager();
+                    FragmentTransaction transaction_r = fragmentManager_r.beginTransaction();
+                    transaction_r.replace(R.id.right_container, resultsShowFragment);
+                    transaction_r.commit();
+//                    Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        resultsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                /*****************************
+                 添加长按删除功能
+                 */
+                return true;
+            }
+        });
+    }
+
+    private void initStatisticDatas() {
         /*
-        获取扫描得到的报告数据
+        获取扫描得到的统计分析报告数据
          */
+        statisticDatas = new ArrayList<FileBean>();
+        FileBean bean = new FileBean(1,0,"根目录1");
+        statisticDatas.add(bean);
+        bean = new FileBean(2,0,"根目录2");
+        statisticDatas.add(bean);
+        bean = new FileBean(3,0,"根目录3");
+        statisticDatas.add(bean);
+        bean = new FileBean(4,1,"根目录1-1");
+        statisticDatas.add(bean);
+        bean = new FileBean(5,1,"根目录1-2");
+        statisticDatas.add(bean);
+        bean = new FileBean(6,3,"根目录3-1");
+        statisticDatas.add(bean);
+        bean = new FileBean(7,3,"根目录3-2");
+        statisticDatas.add(bean);
 
+    }
 
-        mDatas = new ArrayList<FileBean>();
-        FileBean bean = new FileBean(1,0,"根目录1");mDatas.add(bean);
-        bean = new FileBean(2,0,"根目录2");mDatas.add(bean);
-        bean = new FileBean(3,0,"根目录3");mDatas.add(bean);
-        bean = new FileBean(4,1,"根目录1-1");mDatas.add(bean);
-        bean = new FileBean(5,1,"根目录1-2");mDatas.add(bean);
-        bean = new FileBean(6,5,"根目录1-2-1");mDatas.add(bean);
-        bean = new FileBean(7,3,"根目录3-1");mDatas.add(bean);
-        bean = new FileBean(8,3,"根目录3-2");mDatas.add(bean);
-
+    private void initResultsDatas() {
+        /*
+        获取扫描得到的结果汇总报告数据
+         */
+        resultsDatas = new ArrayList<FileBean>();
+        FileBean bean = new FileBean(1,0,"根目录1");
+        resultsDatas.add(bean);
+        bean = new FileBean(2,0,"根目录2");
+        resultsDatas.add(bean);
+        bean = new FileBean(3,0,"根目录3");
+        resultsDatas.add(bean);
+        bean = new FileBean(4,1,"根目录1-1");
+        resultsDatas.add(bean);
+        bean = new FileBean(5,1,"根目录1-2");
+        resultsDatas.add(bean);
+        bean = new FileBean(6,5,"根目录1-2-1");
+        resultsDatas.add(bean);
+        bean = new FileBean(7,3,"根目录3-1");
+        resultsDatas.add(bean);
+        bean = new FileBean(8,3,"根目录3-2");
+        resultsDatas.add(bean);
     }
 
     private void configToolbar() {             //设置标题栏
@@ -193,18 +257,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 //    public void onClick(View v) {                  //要修改为ListView点击事件
 //        switch (v.getId()){
 //            case R.id.button_lefttop:
-//                RightJieguoFragment rightJieguoFragment = new RightJieguoFragment();
-//                FragmentManager fragmentManager_t = getFragmentManager();
-//                FragmentTransaction transaction_t = fragmentManager_t.beginTransaction();
-//                transaction_t.replace(R.id.right_container, rightJieguoFragment);
-//                transaction_t.commit();
+//
 //                break;
 //            case R.id.button_leftdown:
-//                RightTongjiFragment rightTongjiFragment = new RightTongjiFragment();
-//                FragmentManager fragmentManager_d = getFragmentManager();
-//                FragmentTransaction transaction_d = fragmentManager_d.beginTransaction();
-//                transaction_d.replace(R.id.right_container, rightTongjiFragment);
-//                transaction_d.commit();
+//
 //        }
 //    }
 }

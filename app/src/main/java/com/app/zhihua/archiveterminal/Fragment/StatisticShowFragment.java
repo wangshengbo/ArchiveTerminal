@@ -10,7 +10,7 @@ import com.app.zhihua.archiveterminal.R;
 /**
  * Created by Administrator on 2016/3/1.
  */
-public class RightTongjiFragment extends android.app.Fragment {
+public class StatisticShowFragment extends android.app.Fragment {
 @Override
 public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.right_tongji_fragment,container,false);
