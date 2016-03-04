@@ -1,7 +1,8 @@
-package com.app.zhihua.archiveterminal;
+package com.app.zhihua.archiveterminal.Avtivity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +21,7 @@ import com.app.zhihua.archiveterminal.Adapter.SimpleTreeListViewAdapter;
 import com.app.zhihua.archiveterminal.Bean.FileBean;
 import com.app.zhihua.archiveterminal.Fragment.ResultsShowFragment;
 import com.app.zhihua.archiveterminal.Fragment.StatisticShowFragment;
+import com.app.zhihua.archiveterminal.R;
 import com.app.zhihua.archiveterminal.Utils.Adapter.TreeListviewAdapter;
 import com.app.zhihua.archiveterminal.Utils.Node;
 
@@ -174,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     private void configToolbar() {             //设置标题栏
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
 
         setSupportActionBar(mToolbar);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);    //开启左上角图标
@@ -210,7 +212,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 /*
                 要修改成跳转到导出功能
                  */
-                Toast.makeText(MainActivity.this, "push derive", Toast.LENGTH_SHORT).show();
+                Intent intentToDerive = new Intent(MainActivity.this,DeriveActivity.class);
+                startActivity(intentToDerive);
+//                Toast.makeText(MainActivity.this, "push derive", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
