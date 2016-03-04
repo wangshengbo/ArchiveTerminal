@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="统计分析"
-        android:textSize="100dp"/>
+        android:textSize="100dp"
+        android:ellipsize="none"
+        android:singleLine="true"/>
 
 </LinearLayout>

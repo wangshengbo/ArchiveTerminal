@@ -17,6 +17,8 @@
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:text="HelloWorld"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center_vertical"
+        android:ellipsize="none"
+        android:singleLine="true"/>
 
 </LinearLayout>
