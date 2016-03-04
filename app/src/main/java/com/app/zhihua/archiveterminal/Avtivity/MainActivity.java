@@ -177,19 +177,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     private void configToolbar() {             //设置标题栏
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
-
         setSupportActionBar(mToolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);    //开启左上角图标
-//        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("  智华计算机终端保密检查系统归档管理终端");
         getSupportActionBar().setLogo(R.drawable.logo);
-        // 设置返回按钮点击事件--销毁当前Activity
-//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
     }
 
     @Override
@@ -209,12 +199,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 Toast.makeText(MainActivity.this, "push scan", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_bar_derive:
-                /*
-                要修改成跳转到导出功能
-                 */
                 Intent intentToDerive = new Intent(MainActivity.this,DeriveActivity.class);
+
                 startActivity(intentToDerive);
-//                Toast.makeText(MainActivity.this, "push derive", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
