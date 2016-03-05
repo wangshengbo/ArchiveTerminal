@@ -1,9 +1,9 @@
-package com.app.zhihua.archiveterminal.Bean;
+package com.app.zhihua.archiveterminal.bean;
 
 
-import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodeId;
-import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodeLabel;
-import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodePid;
+import com.app.zhihua.archiveterminal.utils.annotation.TreeNodeId;
+import com.app.zhihua.archiveterminal.utils.annotation.TreeNodeLabel;
+import com.app.zhihua.archiveterminal.utils.annotation.TreeNodePid;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class FileBean implements Serializable{
 
     // 添加serialVersionUID
-    private static final long serialVersionUID = -5101723995045976710L;
+    private static final long serialVersionUID = 1090268812417986114L;
 
     @TreeNodeId
     private int id;

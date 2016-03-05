@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.Avtivity;
+package com.app.zhihua.archiveterminal.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -17,13 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.app.zhihua.archiveterminal.Adapter.SimpleTreeListViewAdapter;
-import com.app.zhihua.archiveterminal.Bean.FileBean;
-import com.app.zhihua.archiveterminal.Fragment.ResultsShowFragment;
-import com.app.zhihua.archiveterminal.Fragment.StatisticShowFragment;
+import com.app.zhihua.archiveterminal.adapter.SimpleTreeListViewAdapter;
+import com.app.zhihua.archiveterminal.bean.FileBean;
+import com.app.zhihua.archiveterminal.fragment.ResultsShowFragment;
+import com.app.zhihua.archiveterminal.fragment.StatisticShowFragment;
 import com.app.zhihua.archiveterminal.R;
-import com.app.zhihua.archiveterminal.Utils.Adapter.TreeListviewAdapter;
-import com.app.zhihua.archiveterminal.Utils.Node;
+import com.app.zhihua.archiveterminal.utils.adapter.TreeListviewAdapter;
+import com.app.zhihua.archiveterminal.utils.Node;
 
 import java.io.Serializable;
 import java.util.ArrayList;

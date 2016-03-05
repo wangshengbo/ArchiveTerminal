@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.Avtivity;
+package com.app.zhihua.archiveterminal.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import com.app.zhihua.archiveterminal.Adapter.SimpleTreeListViewAdapter;
-import com.app.zhihua.archiveterminal.Bean.FileBean;
+import com.app.zhihua.archiveterminal.adapter.SimpleTreeListViewAdapter;
+import com.app.zhihua.archiveterminal.bean.FileBean;
 import com.app.zhihua.archiveterminal.R;
 
 import java.util.List;
