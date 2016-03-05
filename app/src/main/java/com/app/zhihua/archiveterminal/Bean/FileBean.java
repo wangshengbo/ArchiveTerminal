@@ -5,10 +5,16 @@ import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodeId;
 import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodeLabel;
 import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodePid;
 
+import java.io.Serializable;
+
 /**
  * Created by Oliver on 2016/3/2.
  */
-public class FileBean {
+public class FileBean implements Serializable{
+
+    // 添加serialVersionUID
+    private static final long serialVersionUID = -5101723995045976710L;
+
     @TreeNodeId
     private int id;
     @TreeNodePid

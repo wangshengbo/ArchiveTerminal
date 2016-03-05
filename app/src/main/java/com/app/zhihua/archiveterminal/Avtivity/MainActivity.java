@@ -25,6 +25,7 @@ import com.app.zhihua.archiveterminal.R;
 import com.app.zhihua.archiveterminal.Utils.Adapter.TreeListviewAdapter;
 import com.app.zhihua.archiveterminal.Utils.Node;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -200,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 break;
             case R.id.action_bar_derive:
                 Intent intentToDerive = new Intent(MainActivity.this,DeriveActivity.class);
-
+                intentToDerive.putExtra(DeriveActivity.KEY_RESULT_DATAS, (Serializable) resultsDatas);
                 startActivity(intentToDerive);
                 break;
             default:

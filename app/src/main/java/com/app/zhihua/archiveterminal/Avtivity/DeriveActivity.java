@@ -1,8 +1,10 @@
 package com.app.zhihua.archiveterminal.Avtivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -16,6 +18,10 @@ import java.util.List;
  * Created by Administrator on 2016/3/4.
  */
 public class DeriveActivity extends AppCompatActivity {
+
+    private static final String TAG = "DeriveActivity";
+
+    public static final String KEY_RESULT_DATAS = "key_result_datas";
 
     private Toolbar deriveToolbar;
 
@@ -36,6 +42,24 @@ public class DeriveActivity extends AppCompatActivity {
         deriveStatisticList = (ListView) findViewById(R.id.list_statistic_derive);
 
         configToolbar();  //初始化标题栏
+
+        getDataPassed();
+    }
+
+    /**
+     * 接收上一个Activity传递来的数据
+     */
+    private void getDataPassed() {
+        Intent intent = getIntent();
+        // 防空指针先判断
+        if (intent.hasExtra(KEY_RESULT_DATAS)) {
+            deriveResultsDatas = (List<FileBean>) intent.getSerializableExtra(KEY_RESULT_DATAS);
+        }
+        if (deriveResultsDatas != null) {
+            for (FileBean item : deriveResultsDatas) {
+                Log.d(TAG, item.getLabel());
+            }
+        }
     }
 
 
