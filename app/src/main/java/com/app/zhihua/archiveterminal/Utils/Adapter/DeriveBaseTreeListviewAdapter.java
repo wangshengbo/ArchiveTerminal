@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.utils.adapter;
+package com.app.zhihua.archiveterminal.Utils.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,16 +8,15 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-
-import com.app.zhihua.archiveterminal.utils.Node;
-import com.app.zhihua.archiveterminal.utils.TreeHelper;
+import com.app.zhihua.archiveterminal.Utils.Node;
+import com.app.zhihua.archiveterminal.Utils.TreeHelper;
 
 import java.util.List;
 
 /**
  * Created by Oliver on 2016/3/2.
  */
-public abstract class TreeListviewAdapter<T> extends BaseAdapter {
+public abstract class DeriveBaseTreeListviewAdapter<T> extends BaseAdapter {
 
     protected Context mContext;
     protected List<Node> mAllNodes;
@@ -25,40 +24,40 @@ public abstract class TreeListviewAdapter<T> extends BaseAdapter {
     protected LayoutInflater mInflater;
     protected ListView mTree;
 
-    public interface OnTreeNodeClickListener{
-        void onClick(Node node, int position);
-    }
-    private OnTreeNodeClickListener mListener;
-    public void setOnTreeNodeClickListener(OnTreeNodeClickListener mListener) {
-        this.mListener = mListener;
-    }
+//    public interface OnTreeNodeClickListener{
+//        void onClick(Node node, int position);
+//    }
+//    private OnTreeNodeClickListener mListener;
+//    public void setOnTreeNodeClickListener(OnTreeNodeClickListener mListener) {
+//        this.mListener = mListener;
+//    }
 
-    public TreeListviewAdapter(ListView tree,Context context,List<T> datas,int defaultExpandLevel) throws IllegalAccessException {
+    public DeriveBaseTreeListviewAdapter(ListView tree, Context context, List<T> datas, int defaultExpandLevel) throws IllegalAccessException {
         mContext = context;
         mAllNodes = TreeHelper.getSortedNodes(datas, defaultExpandLevel);
-        mVisibleNodes = TreeHelper.filterVisibleNodes(mAllNodes);
+        mVisibleNodes = mAllNodes;
         mInflater = LayoutInflater.from(context);
 
         tree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                expandOrCollapse(position);
-                if(mListener != null){
-                    mListener.onClick(mVisibleNodes.get(position),position);
-                }
+//                expandOrCollapse(position);
+//                if(mListener != null){
+//                    mListener.onClick(mVisibleNodes.get(position),position);
+//                }
             }
         });
     }
 
-    private void expandOrCollapse(int position) {
-        Node n = mVisibleNodes.get(position);
-        if (n!= null){
-            if(n.isLeaf()) return;
-            n.setExpand(!n.isExpand());
-            mVisibleNodes = TreeHelper.filterVisibleNodes(mAllNodes);
-            notifyDataSetChanged();
-        }
-    }
+//    private void expandOrCollapse(int position) {
+//        Node n = mVisibleNodes.get(position);
+//        if (n!= null){
+//            if(n.isLeaf()) return;
+//            n.setExpand(!n.isExpand());
+//            mVisibleNodes = TreeHelper.filterVisibleNodes(mAllNodes);
+//            notifyDataSetChanged();
+//        }
+//    }
 
     @Override
     public int getCount() {

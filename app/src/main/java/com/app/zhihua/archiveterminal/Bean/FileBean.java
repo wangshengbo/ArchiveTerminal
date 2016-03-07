@@ -1,9 +1,9 @@
-package com.app.zhihua.archiveterminal.bean;
+package com.app.zhihua.archiveterminal.Bean;
 
 
-import com.app.zhihua.archiveterminal.utils.annotation.TreeNodeId;
-import com.app.zhihua.archiveterminal.utils.annotation.TreeNodeLabel;
-import com.app.zhihua.archiveterminal.utils.annotation.TreeNodePid;
+import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodeId;
+import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodeLabel;
+import com.app.zhihua.archiveterminal.Utils.Annotation.TreeNodePid;
 
 import java.io.Serializable;
 

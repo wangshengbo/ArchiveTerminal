@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.utils.annotation;
+package com.app.zhihua.archiveterminal.Utils.Annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

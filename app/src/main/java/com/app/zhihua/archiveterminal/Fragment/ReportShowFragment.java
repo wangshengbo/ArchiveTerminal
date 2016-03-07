@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.fragment;
+package com.app.zhihua.archiveterminal.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

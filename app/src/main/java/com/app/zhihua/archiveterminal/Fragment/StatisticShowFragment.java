@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.fragment;
+package com.app.zhihua.archiveterminal.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.zhihua.archiveterminal.R;
-import com.app.zhihua.archiveterminal.utils.Node;
+import com.app.zhihua.archiveterminal.Utils.Node;
 
 /**
  * Created by Administrator on 2016/3/1.

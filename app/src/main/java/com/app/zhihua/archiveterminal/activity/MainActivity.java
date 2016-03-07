@@ -17,13 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.app.zhihua.archiveterminal.adapter.SimpleTreeListViewAdapter;
-import com.app.zhihua.archiveterminal.bean.FileBean;
-import com.app.zhihua.archiveterminal.fragment.ResultsShowFragment;
-import com.app.zhihua.archiveterminal.fragment.StatisticShowFragment;
+import com.app.zhihua.archiveterminal.Adapter.MainTreeListViewAdapter;
+import com.app.zhihua.archiveterminal.Bean.FileBean;
+import com.app.zhihua.archiveterminal.Fragment.ResultsShowFragment;
+import com.app.zhihua.archiveterminal.Fragment.StatisticShowFragment;
 import com.app.zhihua.archiveterminal.R;
-import com.app.zhihua.archiveterminal.utils.adapter.TreeListviewAdapter;
-import com.app.zhihua.archiveterminal.utils.Node;
+import com.app.zhihua.archiveterminal.Utils.Adapter.MainBaseTreeListviewAdapter;
+import com.app.zhihua.archiveterminal.Utils.Node;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public ListView resultsList;     //结果汇总目录
     public ListView statisticList;    //统计分析目录
 
-    private SimpleTreeListViewAdapter<FileBean> resultsAdapter;
-    private SimpleTreeListViewAdapter<FileBean> statisticAdapter;
+    private MainTreeListViewAdapter<FileBean> resultsAdapter;
+    private MainTreeListViewAdapter<FileBean> statisticAdapter;
     private List<FileBean> resultsDatas;
     private List<FileBean> statisticDatas;
 
@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         initStatisticDatas();   //初始化统计分析目录数据
 
         try {
-            resultsAdapter = new SimpleTreeListViewAdapter<FileBean>(resultsList,this, resultsDatas,1);
+            resultsAdapter = new MainTreeListViewAdapter<FileBean>(resultsList,this, resultsDatas,1);
             resultsList.setAdapter(resultsAdapter);
-            statisticAdapter = new SimpleTreeListViewAdapter<FileBean>(statisticList,this, statisticDatas,1);
+            statisticAdapter = new MainTreeListViewAdapter<FileBean>(statisticList,this, statisticDatas,1);
             statisticList.setAdapter(statisticAdapter);
 
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     private void initStatisticClickEvent() {                                //初始化统计分析点击事件
-        statisticAdapter.setOnTreeNodeClickListener(new TreeListviewAdapter.OnTreeNodeClickListener() {
+        statisticAdapter.setOnTreeNodeClickListener(new MainBaseTreeListviewAdapter.OnTreeNodeClickListener() {
             @Override
             public void onClick(Node node, int position) {
                 if (node.isLeaf()) {
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     private void initResultsClickEvent() {                      //初始化结果汇总点击事件
-        resultsAdapter.setOnTreeNodeClickListener(new TreeListviewAdapter.OnTreeNodeClickListener() {
+        resultsAdapter.setOnTreeNodeClickListener(new MainBaseTreeListviewAdapter.OnTreeNodeClickListener() {
             @Override
             public void onClick(Node node, int position) {
                 if (node.isLeaf()) {
@@ -202,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             case R.id.action_bar_derive:
                 Intent intentToDerive = new Intent(MainActivity.this,DeriveActivity.class);
                 intentToDerive.putExtra(DeriveActivity.KEY_RESULT_DATAS, (Serializable) resultsDatas);
+                intentToDerive.putExtra(DeriveActivity.KEY_STATISTIC_DATAS,(Serializable)statisticDatas);
                 startActivity(intentToDerive);
                 break;
             default:
