@@ -46,7 +46,9 @@ public abstract class DeriveBaseTreeListviewAdapter<T> extends BaseAdapter {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_derive);
                 mCheckBox.setChecked(!mCheckBox.isChecked());
-                
+                if (mVisibleNodes.get(position).getChildren().size() != 0){
+
+                }
 
 
 //                expandOrCollapse(position);
