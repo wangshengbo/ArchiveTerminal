@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.app.zhihua.archiveterminal.adapter.DeriveTreeListViewAdapater;
@@ -27,6 +28,7 @@ public class DeriveActivity extends AppCompatActivity {
 
     public ListView deriveResultsList;     //结果汇总目录
     public ListView deriveStatisticList;    //统计分析目录
+    public Button btnAllSelect,btnReSelect,btnConfirm;
 
     private DeriveTreeListViewAdapater<FileBean> deriveResultsAdapter;
     private DeriveTreeListViewAdapater<FileBean> deriveStatisticAdapter;
@@ -40,6 +42,10 @@ public class DeriveActivity extends AppCompatActivity {
 
         deriveResultsList = (ListView) findViewById(R.id.list_results_derive);
         deriveStatisticList = (ListView) findViewById(R.id.list_statistic_derive);
+
+        btnAllSelect = (Button)findViewById(R.id.btn_all_select);
+        btnReSelect = (Button)findViewById(R.id.btn_re_select);
+        btnConfirm = (Button)findViewById(R.id.btn_confirm);
 
         configToolbar();  //初始化标题栏
 
@@ -55,34 +61,47 @@ public class DeriveActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-//        initResultsClickEvent();     //初始化结果汇总点击事件
-//        initStatisticClickEvent();     //初始化统计分析点击事件
+        btnAllSelect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // 遍历list的长度，将MyAdapter中的map值全部设为true
+                for (int i = 0; i < deriveResultsDatas.size(); i++) {
+                    deriveResultsAdapter.getIsSelected().put(i, true);
+                }
+                for (int i = 0; i < deriveStatisticDatas.size(); i++) {
+                    deriveStatisticAdapter.getIsSelected().put(i, true);
+                }
+                // 刷新listview和TextView的显示
+                dataChanged();
+            }
+        });
+        btnReSelect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // 遍历list的长度，将MyAdapter中的map值全部设为false
+                for (int i = 0; i < deriveResultsDatas.size(); i++) {
+                    deriveResultsAdapter.getIsSelected().put(i, false);
+                }
+                for (int i = 0; i < deriveStatisticDatas.size(); i++) {
+                    deriveStatisticAdapter.getIsSelected().put(i, false);
+                }
+                // 刷新listview和TextView的显示
+                dataChanged();
+            }
+        });
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                /*
+                增加确定导出功能
+                 */
+            }
+        });
     }
 
-//    private void initStatisticClickEvent() {
-//        deriveStatisticAdapter.setOnTreeNodeClickListener(new MainBaseTreeListviewAdapter.OnTreeNodeClickListener() {
-//            @Override
-//            public void onClick(Node node, int position) {
-//                /*
-//                添加CheckBox点击事件
-//                 */
-////                if (node.isLeaf()) {
-////
-////                }
-//            }
-//        });
-//    }
-//
-//    private void initResultsClickEvent() {
-//        deriveResultsAdapter.setOnTreeNodeClickListener(new MainBaseTreeListviewAdapter.OnTreeNodeClickListener(){
-//            @Override
-//            public void onClick(Node node, int position) {
-//                /*
-//                添加CheckBox点击事件
-//                 */
-//            }
-//        });
-//    }
+    private void dataChanged() {
+        // 通知listView刷新
+        deriveResultsAdapter.notifyDataSetChanged();
+        deriveStatisticAdapter.notifyDataSetChanged();
+    }
+
 
     /**
      * 接收上一个Activity传递来的数据
@@ -94,11 +113,6 @@ public class DeriveActivity extends AppCompatActivity {
             deriveResultsDatas = (List<FileBean>) intent.getSerializableExtra(KEY_RESULT_DATAS);
             deriveStatisticDatas = (List<FileBean>) intent.getSerializableExtra(KEY_STATISTIC_DATAS);
         }
-        if (deriveResultsDatas != null) {
-//            for (FileBean item : deriveResultsDatas) {
-//                Log.d(TAG, item.getLabel());
-//            }
-        }
     }
 
 
@@ -109,7 +123,10 @@ public class DeriveActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("  智华计算机终端保密检查系统归档管理终端");
         getSupportActionBar().setLogo(R.drawable.logo);
-        // 设置返回按钮点击事件--销毁当前Activity--是否要传递数据回MainActivity？？？？？？？？？？？？？
+        // 设置返回按钮点击事件--销毁当前Activity--
+        /*
+        是否要传递数据回MainActivity？？？？？？？？？？？？？
+         */
         deriveToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

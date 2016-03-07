@@ -12,6 +12,7 @@ import com.app.zhihua.archiveterminal.R;
 import com.app.zhihua.archiveterminal.utils.adapter.DeriveBaseTreeListviewAdapter;
 import com.app.zhihua.archiveterminal.utils.Node;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,6 +43,10 @@ public class DeriveTreeListViewAdapater<T> extends DeriveBaseTreeListviewAdapter
             holder.mIcon.setImageResource(R.drawable.tree_ex);
         }
         holder.mText.setText(node.getName());
+        // 根据isCheckBoxSelected来设置checkbox的选中状况
+        if(DeriveBaseTreeListviewAdapter.getIsSelected().get(position)!=null){
+            holder.mCheckBox.setChecked(DeriveBaseTreeListviewAdapter.getIsSelected().get(position));
+        }
         return convertView;
     }
 
@@ -50,6 +55,8 @@ public class DeriveTreeListViewAdapater<T> extends DeriveBaseTreeListviewAdapter
         TextView mText;
         CheckBox mCheckBox;
     }
+
+
 
 
 }
