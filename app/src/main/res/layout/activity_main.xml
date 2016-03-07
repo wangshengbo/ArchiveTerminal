@@ -22,7 +22,7 @@
             android:layout_weight="4">
             <fragment
                 android:id="@+id/left_top_fragment"
-                android:name="com.app.zhihua.archiveterminal.Fragment.ResultsSummaryFragment"
+                android:name="com.app.zhihua.archiveterminal.fragment.ResultsSummaryFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -35,7 +35,7 @@
                 />
             <fragment
                 android:id="@+id/left_down_fragment"
-                android:name="com.app.zhihua.archiveterminal.Fragment.StatisticalAnalysisFragment"
+                android:name="com.app.zhihua.archiveterminal.fragment.StatisticalAnalysisFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -55,7 +55,7 @@
             android:layout_weight="1">
             <fragment
                 android:id="@+id/right_fragment"
-                android:name="com.app.zhihua.archiveterminal.Fragment.ReportShowFragment"
+                android:name="com.app.zhihua.archiveterminal.fragment.ReportShowFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:layout="@layout/report_show_fragment" />

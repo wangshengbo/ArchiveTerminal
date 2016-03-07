@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.Adapter;
+package com.app.zhihua.archiveterminal.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -9,9 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.app.zhihua.archiveterminal.R;
-import com.app.zhihua.archiveterminal.Utils.Adapter.DeriveBaseTreeListviewAdapter;
-import com.app.zhihua.archiveterminal.Utils.Node;
-import com.app.zhihua.archiveterminal.Utils.Adapter.MainBaseTreeListviewAdapter;
+import com.app.zhihua.archiveterminal.utils.adapter.DeriveBaseTreeListviewAdapter;
+import com.app.zhihua.archiveterminal.utils.Node;
 
 import java.util.List;
 

@@ -7,11 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 
-import com.app.zhihua.archiveterminal.Adapter.DeriveTreeListViewAdapater;
-import com.app.zhihua.archiveterminal.Bean.FileBean;
+import com.app.zhihua.archiveterminal.adapter.DeriveTreeListViewAdapater;
+import com.app.zhihua.archiveterminal.bean.FileBean;
 import com.app.zhihua.archiveterminal.R;
-import com.app.zhihua.archiveterminal.Utils.Node;
-import com.app.zhihua.archiveterminal.Utils.Adapter.MainBaseTreeListviewAdapter;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.app.zhihua.archiveterminal.Utils.Adapter;
+package com.app.zhihua.archiveterminal.utils.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.app.zhihua.archiveterminal.R;
-import com.app.zhihua.archiveterminal.Utils.Node;
-import com.app.zhihua.archiveterminal.Utils.TreeHelper;
+import com.app.zhihua.archiveterminal.utils.Node;
+import com.app.zhihua.archiveterminal.utils.TreeHelper;
 
 import java.util.List;
 
