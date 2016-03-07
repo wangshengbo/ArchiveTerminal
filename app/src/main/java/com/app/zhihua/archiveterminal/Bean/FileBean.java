@@ -21,12 +21,19 @@ public class FileBean implements Serializable{
     private int pId;
     @TreeNodeLabel
     private String label;
+//    private boolean isChecked = false;
 
     public FileBean(int id, int pId, String label) {
         this.id = id;
         this.pId = pId;
         this.label = label;
     }
+//    public boolean isChecked(){
+//        return isChecked;
+//    }
+//    public void setChecked(boolean check){
+//        this.isChecked = check;
+//    }
 
     public int getId() {
         return id;

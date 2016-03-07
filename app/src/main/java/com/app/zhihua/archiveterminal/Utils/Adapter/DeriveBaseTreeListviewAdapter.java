@@ -40,12 +40,16 @@ public abstract class DeriveBaseTreeListviewAdapter<T> extends BaseAdapter {
         tree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_derive);
                 mCheckBox.setChecked(!mCheckBox.isChecked());
-                if (mVisibleNodes.get(position).getChildren().size() != 0){
+                getIsSelected().put(position,!mCheckBox.isChecked());
+                 /*
+                设置点击父节点改变子节点CheckBox值
+                 */
+                if (mVisibleNodes.get(position).getChildren().size() != 0) {
 
                 }
-
 
             }
         });
@@ -78,7 +82,6 @@ public abstract class DeriveBaseTreeListviewAdapter<T> extends BaseAdapter {
         Node node = mVisibleNodes.get(position);
         convertView = getConvertView(node,position,convertView,parent);
         convertView.setPadding(node.getLevel()*30,3,3,3);
-
         return convertView;
     }
 

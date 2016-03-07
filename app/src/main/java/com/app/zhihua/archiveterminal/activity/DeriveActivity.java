@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.app.zhihua.archiveterminal.adapter.DeriveTreeListViewAdapater;
 import com.app.zhihua.archiveterminal.bean.FileBean;
 import com.app.zhihua.archiveterminal.R;
+import com.app.zhihua.archiveterminal.utils.adapter.DeriveBaseTreeListviewAdapter;
 
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class DeriveActivity extends AppCompatActivity {
     public ListView deriveResultsList;     //结果汇总目录
     public ListView deriveStatisticList;    //统计分析目录
     public Button btnAllSelect,btnReSelect,btnConfirm;
+    public CheckBox mCheckBox;
 
     private DeriveTreeListViewAdapater<FileBean> deriveResultsAdapter;
     private DeriveTreeListViewAdapater<FileBean> deriveStatisticAdapter;
@@ -60,15 +64,21 @@ public class DeriveActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //设置ListView点击事件
+//        setItemClickListener(deriveResultsList, deriveResultsDatas);
+//        setItemClickListener(deriveStatisticList, deriveStatisticDatas);
 
+        //设置底部按钮菜单点击事件
         btnAllSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // 遍历list的长度，将MyAdapter中的map值全部设为true
                 for (int i = 0; i < deriveResultsDatas.size(); i++) {
                     deriveResultsAdapter.getIsSelected().put(i, true);
+//                    deriveResultsDatas.get(i).setChecked(true);
                 }
                 for (int i = 0; i < deriveStatisticDatas.size(); i++) {
                     deriveStatisticAdapter.getIsSelected().put(i, true);
+//                    deriveStatisticDatas.get(i).setChecked(true);
                 }
                 // 刷新listview和TextView的显示
                 dataChanged();
@@ -79,9 +89,11 @@ public class DeriveActivity extends AppCompatActivity {
                 // 遍历list的长度，将MyAdapter中的map值全部设为false
                 for (int i = 0; i < deriveResultsDatas.size(); i++) {
                     deriveResultsAdapter.getIsSelected().put(i, false);
+//                    deriveResultsDatas.get(i).setChecked(false);
                 }
                 for (int i = 0; i < deriveStatisticDatas.size(); i++) {
                     deriveStatisticAdapter.getIsSelected().put(i, false);
+//                    deriveStatisticDatas.get(i).setChecked(false);
                 }
                 // 刷新listview和TextView的显示
                 dataChanged();
@@ -95,6 +107,24 @@ public class DeriveActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private void setItemClickListener(ListView listView, final List<FileBean> datas) {
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                /*
+//                设置点击父节点改变子节点CheckBox值
+//                */
+//                mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_derive);
+//                mCheckBox.setChecked(!mCheckBox.isChecked());
+////                datas.get(position).setChecked(!datas.get(position).isChecked());
+////                if (datas.get(position).getChildren().size() != 0) {
+////
+////                }
+//
+//            }
+//        });
+//    }
 
     private void dataChanged() {
         // 通知listView刷新
