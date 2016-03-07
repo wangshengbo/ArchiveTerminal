@@ -4,6 +4,7 @@ package com.app.zhihua.archiveterminal.utils;
 
 import com.app.zhihua.archiveterminal.R;
 import com.app.zhihua.archiveterminal.utils.annotation.TreeNodeId;
+import com.app.zhihua.archiveterminal.utils.annotation.TreeNodeIsChecked;
 import com.app.zhihua.archiveterminal.utils.annotation.TreeNodeLabel;
 import com.app.zhihua.archiveterminal.utils.annotation.TreeNodePid;
 
@@ -22,6 +23,7 @@ public class TreeHelper {
             int id = -1;
             int pid = -1;
             String label = null;
+            boolean isChecked = false;
 
             node = new Node();
             Class tClass = t.getClass();
@@ -39,8 +41,12 @@ public class TreeHelper {
                     field.setAccessible(true);
                     label = (String)field.get(t);
                 }
+                if(field.getAnnotation(TreeNodeIsChecked.class) !=null){
+                    field.setAccessible(true);
+                    isChecked = field.getBoolean(t);
+                }
             }
-            node = new Node(id,pid,label);
+            node = new Node(id,pid,label,isChecked);
             nodes.add(node);
         }
         for (int i = 0;i<nodes.size();i++)

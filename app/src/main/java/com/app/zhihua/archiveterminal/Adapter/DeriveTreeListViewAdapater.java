@@ -43,10 +43,12 @@ public class DeriveTreeListViewAdapater<T> extends DeriveBaseTreeListviewAdapter
             holder.mIcon.setImageResource(R.drawable.tree_ex);
         }
         holder.mText.setText(node.getName());
+
+        holder.mCheckBox.setChecked(node.isChecked());
         // 根据isCheckBoxSelected来设置checkbox的选中状况
-        if(DeriveBaseTreeListviewAdapter.getIsSelected().get(position)!=null){
-            holder.mCheckBox.setChecked(DeriveBaseTreeListviewAdapter.getIsSelected().get(position));
-        }
+//        if(DeriveBaseTreeListviewAdapter.getIsSelected().get(position)!=null){
+////            holder.mCheckBox.setChecked(DeriveBaseTreeListviewAdapter.getIsSelected().get(position));
+//        }
         return convertView;
     }
 

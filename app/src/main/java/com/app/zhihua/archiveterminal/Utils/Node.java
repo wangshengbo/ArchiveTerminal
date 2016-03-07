@@ -9,10 +9,11 @@ import java.util.List;
 public class Node {
     public Node(){
     }
-    public Node(int id, int pId, String name) {
+    public Node(int id, int pId, String name,boolean isChecked) {
         this.id = id;
         this.pId = pId;
         this.name = name;
+        this.isChecked = isChecked;
     }
 
     private int id;
@@ -20,6 +21,7 @@ public class Node {
     private String name;
     private int level;
     private boolean isExpand = false;
+    private boolean isChecked = false;
     private int icon;
 
     private Node parent;
@@ -105,5 +107,11 @@ public class Node {
                 node.setExpand(false);
             }
         }
+    }
+    public boolean isChecked(){
+        return isChecked;
+    }
+    public void setChecked(boolean check){
+        this.isChecked = check;
     }
 }

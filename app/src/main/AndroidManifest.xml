@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DeriveActivity"></activity>
+        <activity android:name=".activity.DeriveActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

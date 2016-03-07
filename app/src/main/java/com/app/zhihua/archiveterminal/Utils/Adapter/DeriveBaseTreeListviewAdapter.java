@@ -23,44 +23,17 @@ public abstract class DeriveBaseTreeListviewAdapter<T> extends BaseAdapter {
 
     protected Context mContext;
     protected List<Node> mAllNodes;
-    protected List<Node> mVisibleNodes;
+    public List<Node> mVisibleNodes;
     protected LayoutInflater mInflater;
     protected ListView mTree;
     protected CheckBox mCheckBox = null;
-    private static HashMap<Integer, Boolean> isCheckBoxSelected;        // 用来控制CheckBox的选中状况
 
     public DeriveBaseTreeListviewAdapter(ListView tree, Context context, List<T> datas, int defaultExpandLevel) throws IllegalAccessException {
         mContext = context;
         mAllNodes = TreeHelper.getSortedNodes(datas, defaultExpandLevel);
         mVisibleNodes = mAllNodes;
         mInflater = LayoutInflater.from(context);
-        isCheckBoxSelected = new HashMap<Integer, Boolean>();
-        initMapData();
-
-        tree.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                mCheckBox = (CheckBox) view.findViewById(R.id.checkbox_derive);
-                mCheckBox.setChecked(!mCheckBox.isChecked());
-                getIsSelected().put(position,!mCheckBox.isChecked());
-                 /*
-                设置点击父节点改变子节点CheckBox值
-                 */
-                if (mVisibleNodes.get(position).getChildren().size() != 0) {
-
-                }
-
-            }
-        });
     }
-
-    protected void initMapData(){
-        for (int i=0;i < mVisibleNodes.size();i++){
-            getIsSelected().put(i,false);
-        }
-    };
-
 
     @Override
     public int getCount() {
@@ -86,10 +59,5 @@ public abstract class DeriveBaseTreeListviewAdapter<T> extends BaseAdapter {
     }
 
     public abstract View getConvertView(Node node,int position,View convertView,ViewGroup parent);
-    public static HashMap<Integer, Boolean> getIsSelected() {
-        return isCheckBoxSelected;
-    }
-    public static void setIsSelected(HashMap<Integer, Boolean> isCheckBoxSelected) {
-        DeriveBaseTreeListviewAdapter.isCheckBoxSelected = isCheckBoxSelected;
-    }
+
 }
