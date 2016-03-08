@@ -73,11 +73,13 @@ public class DeriveActivity extends AppCompatActivity {
         btnAllSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // 遍历list的长度，将Node中的isChecked值全部设为true
-                for (int i = 0; i < deriveResultsDatas.size(); i++) {
-
+                for (int i = 0; i < deriveResultsAdapter.mAllNodes.size(); i++) {
+                    Node node = deriveResultsAdapter.mAllNodes.get(i);
+                    node.setChecked(true);
                 }
-                for (int i = 0; i < deriveStatisticDatas.size(); i++) {
-
+                for (int i = 0; i < deriveStatisticAdapter.mAllNodes.size(); i++) {
+                    Node node = deriveStatisticAdapter.mAllNodes.get(i);
+                    node.setChecked(true);
                 }
                 // 刷新listview显示
                 dataChanged();
@@ -86,11 +88,13 @@ public class DeriveActivity extends AppCompatActivity {
         btnReSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // 遍历list的长度，将Node中的isChecked值全部设为false
-                for (int i = 0; i < deriveResultsDatas.size(); i++) {
-
+                for (int i = 0; i < deriveResultsAdapter.mAllNodes.size(); i++) {
+                    Node node = deriveResultsAdapter.mAllNodes.get(i);
+                    node.setChecked(false);
                 }
-                for (int i = 0; i < deriveStatisticDatas.size(); i++) {
-
+                for (int i = 0; i < deriveStatisticAdapter.mAllNodes.size(); i++) {
+                    Node node = deriveStatisticAdapter.mAllNodes.get(i);
+                    node.setChecked(false);
                 }
                 // 刷新listview的显示
                 dataChanged();

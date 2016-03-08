@@ -22,7 +22,7 @@ import java.util.List;
 public abstract class DeriveBaseTreeListviewAdapter<T> extends BaseAdapter {
 
     protected Context mContext;
-    protected List<Node> mAllNodes;
+    public List<Node> mAllNodes;
     public List<Node> mVisibleNodes;
     protected LayoutInflater mInflater;
     protected ListView mTree;
