@@ -72,7 +72,7 @@ public class DeriveActivity extends AppCompatActivity {
         //设置底部按钮菜单点击事件
         btnAllSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // 遍历list的长度，将MyAdapter中的map值全部设为true
+                // 遍历list的长度，将Node中的isChecked值全部设为true
                 for (int i = 0; i < deriveResultsDatas.size(); i++) {
 
                 }
@@ -85,14 +85,14 @@ public class DeriveActivity extends AppCompatActivity {
         });
         btnReSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // 遍历list的长度，将MyAdapter中的map值全部设为false
+                // 遍历list的长度，将Node中的isChecked值全部设为false
                 for (int i = 0; i < deriveResultsDatas.size(); i++) {
 
                 }
                 for (int i = 0; i < deriveStatisticDatas.size(); i++) {
 
                 }
-                // 刷新listview和TextView的显示
+                // 刷新listview的显示
                 dataChanged();
             }
         });
